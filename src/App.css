@@ -1,0 +1,35 @@
+
+.glass {
+  /* background-color: transparent; */
+border: 1px solid currentColor;
+  /* background: rgba(255,255,255,0.2); */
+  /* background: rgba(255, 255, 255, 0.07); */
+  border: 1px solid rgb(64, 172, 174);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 10px;
+}
+
+.btn-aqua {
+  background: linear-gradient(135deg, #00e5a0, #00b07a);
+  color: #0a1628;
+  font-weight: 700;
+  font-family: 'Quicksand', sans-serif;
+  border: none;
+  cursor: pointer;
+  height: 30px;
+  width: 60px;
+
+  border-radius: 10px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  justify-items: center;
+}
+
+.main{
+  padding: 15px;
+}
