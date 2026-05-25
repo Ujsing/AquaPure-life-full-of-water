@@ -1,11 +1,11 @@
 
 
-import { ShoppingCartOutlined, CloseOutlined, SearchOutlined } from "@ant-design/icons";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import '../App.css'
 
 export default function Topbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(true);
+  const [isMobileMenuOpen] = useState(true);
 
   return (
     <div className="sticky top-4 z-50 px-4 w-full">

@@ -7,7 +7,7 @@ export default function SignInModal() {
         const [loading, setLoading] = useState(false);
   const [loginType, setLoginType] = useState('mobile');
 
-  const onFinish = async (values) => {
+  const onFinish = async () => {
     setLoading(true);
     // Simulate API call
     setTimeout(() => {
