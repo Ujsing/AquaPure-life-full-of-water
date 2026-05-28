@@ -14,3 +14,13 @@ body {
   background: linear-gradient(135deg, #0a1628 0%, #0d2847 40%, #0a3d2e 100%);
   min-height: 100vh;
 }
+
+/* Add this to your index.css or App.css */
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

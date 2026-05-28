@@ -4,7 +4,7 @@ const { Title, Text } = Typography;
 
 const AquaPureBanner = () => {
   return (
-    <div className="min-h-96 mt-3 flex items-center justify-center p-4">
+    <div className="min-h-52 mt-3 flex items-center justify-center p-4">
       <Card 
         className="w-full flex overflow-hidden border-2 border-white/10 rounded-3xl !bg-transparent backdrop-blur-sm"
         bodyStyle={{ padding: 0, overflow: 'visible', width:'100vw'}}

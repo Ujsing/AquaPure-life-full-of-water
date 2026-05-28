@@ -1,4 +1,3 @@
-// src/data/products.js
 export const products = [
   {
     id: 1,
@@ -6,8 +5,11 @@ export const products = [
     type: 'RO + UV Filtered',
     size: '1 Litre',
     price: 8,
-    color: 'from-acc/70 to-cyan-700/30',
+    // Using standard Tailwind gradient colors (Tailwind v4 compatible)
+    gradientFrom: '#00d4aa',
+    gradientTo: '#0891b2',
     tag: 'Best Seller',
+    category: 'Still Water',
   },
   {
     id: 2,
@@ -15,8 +17,10 @@ export const products = [
     type: 'Mineral + Alkaline',
     size: '1 Litre',
     price: 12,
-    color: 'from-emerald-400/70 to-emerald-700/30',
+    gradientFrom: '#34d399',
+    gradientTo: '#059669',
     tag: null,
+    category: 'Mineral',
   },
   {
     id: 3,
@@ -24,8 +28,10 @@ export const products = [
     type: 'Carbonated + Natural',
     size: '500 ml',
     price: 15,
-    color: 'from-indigo-400/70 to-indigo-700/30',
+    gradientFrom: '#818cf8',
+    gradientTo: '#4f46e5',
     tag: null,
+    category: 'Sparkling',
   },
   {
     id: 4,
@@ -33,7 +39,31 @@ export const products = [
     type: 'Still Water',
     size: '5 Litre',
     price: 30,
-    color: 'from-orange-400/70 to-orange-700/30',
+    gradientFrom: '#fb923c',
+    gradientTo: '#ea580c',
     tag: 'Value Pack',
+    category: 'Still Water',
+  },
+  {
+    id: 5,
+    name: 'Alkaline Plus',
+    type: 'Alkaline pH 9+',
+    size: '1 Litre',
+    price: 18,
+    gradientFrom: '#c084fc',
+    gradientTo: '#9333ea',
+    tag: null,
+    category: 'Alkaline',
+  },
+  {
+    id: 6,
+    name: 'Weekly Box',
+    type: '7-day supply · 14 bottles',
+    size: '1L × 14',
+    price: 90,
+    gradientFrom: '#fbbf24',
+    gradientTo: '#d97706',
+    tag: 'Best Value',
+    category: 'Subscriptions',
   },
 ]
