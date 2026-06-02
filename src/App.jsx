@@ -56,6 +56,7 @@ import Address from './pages/Address'
 import Payment from './pages/Payment'
 import Orders from './pages/Orders'
 import { AddressProvider } from './context/AddressContext'
+import SignUpModals from './components/SignUpModals'
 // import Cart from './pages/Cart'
 // import Payment from './pages/Payment'
 // import Orders from './pages/Orders'
@@ -70,6 +71,7 @@ function Layout({ children }) {
       </main>
       {/* SignInModal is available on every page, controlled by AuthContext */}
       <SignInModal />
+      <SignUpModals/>
     </div>
   )
 }
@@ -85,6 +87,7 @@ export default function App() {
             <Routes>
               <Route path="/"         element={<Home />}    />
                <Route path='/signin' element={<SignInModal/>} />
+               <Route path='/signup' element={<SignUpModals/>} />
 
               <Route path="/cart"     element={<Cart />}    />
               <Route path="/address"  element={<Address />} />

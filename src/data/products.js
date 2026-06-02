@@ -5,7 +5,6 @@ export const products = [
     type: 'RO + UV Filtered',
     size: '1 Litre',
     price: 8,
-    // Using standard Tailwind gradient colors (Tailwind v4 compatible)
     gradientFrom: '#00d4aa',
     gradientTo: '#0891b2',
     tag: 'Best Seller',

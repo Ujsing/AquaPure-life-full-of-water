@@ -68,14 +68,16 @@
 //   )
 // }
 
-import { useState } from "react"
-import { Link } from "react-router-dom"
-import { Tag } from "antd"
+import {  useState } from "react"
+
 import AquaPureBanner from "../components/AquaPureBanner"
 import ProductCard from "../components/ProductCard"
-import HorizontalScrollContainer from "../components/HorizontalScrollContainer"
-import CapsuleTab from "../components/CapsuleTab"
+// import HorizontalScrollContainer from "../components/HorizontalScrollContainer"
+// import CapsuleTab from "../components/CapsuleTab"
 import { products } from "../data/products"
+import { SearchOutlined } from "@ant-design/icons"
+import useDebounce from "../hooks/useDebounce"
+import StatCards from "../components/StatCards"
 
 const CATEGORIES = ["All", "Still Water", "Mineral", "Sparkling", "Alkaline", "Subscriptions"]
 
@@ -86,35 +88,47 @@ const STATS = [
   { value: "0",    label: "Plastic Waste",     color: "#818cf8" },
 ]
 
+
+
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState("All")
+  const[search, setSearch] = useState("")
+  const debounceSearch = useDebounce(search, 500)
 
+   
+    
+    const filtered = products.filter(i=>{
+      const matchedCategory = activeCategory === 'All' || i.category === activeCategory
+      const s = (debounceSearch || "").toLowerCase().trim()
 
-  // Filter products by selected category
-  const filtered = activeCategory === "All"
-    ? products
-    : products.filter(p => p.category === activeCategory)
+        if(!s){
+          return matchedCategory
+        }
+      const searchMatch = debounceSearch === '' || i.name && i.name.toLowerCase().includes(s) || 
+      i.category && i.category.toLowerCase().includes(s) || i.description && i.description.toLowerCase().includes(s)
 
+      return matchedCategory && searchMatch
+    })
+   
   return (
     <div className="overflow-x-hidden">
+       <div className="mt-2.5 mx-2.5 flex items-center gap-3 px-4 py-2.5 rounded-xl
+              bg-white/8 border border-white/10">
+              <SearchOutlined className="text-white/40 text-base flex-shrink-0" />
+              <input autoFocus 
+              value={search}
+              onChange={e=> setSearch(e.target.value)}
+                placeholder="Search water, filters, bottles..."
+                className="flex-1 bg-transparent outline-none text-white text-sm placeholder:text-white/30" />
+            </div>
 
       {/* Hero banner */}
-      <AquaPureBanner />
+      {search? "" : <AquaPureBanner />}
 
-      {/* Stats strip */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 px-4 mb-6">
-        {STATS.map(s => (
-          <div key={s.label}
-            className="rounded-2xl p-4 text-center"
-            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
-            <p className="text-xl font-bold" style={{ color: s.color }}>{s.value}</p>
-            <p className="text-[11px] text-white/40 mt-1">{s.label}</p>
-          </div>
-        ))}
-      </div>
+   
 
       {/* Category tabs — horizontal scroll */}
-      <div className="px-4 mb-4">
+      {/* <div className="px-4 mb-4 mt-2.5">
         <HorizontalScrollContainer>
           {CATEGORIES.map(cat => (
             <CapsuleTab
@@ -125,18 +139,41 @@ export default function Home() {
             />
           ))}
         </HorizontalScrollContainer>
-      </div>
+      </div> */}
+
+
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-11 2xl:grid-cols-11 gap-3 items-center p-4">
+  {CATEGORIES.map(c =>(
+    <StatCards key={c} level={c} onclick={()=> setActiveCategory(c)}/>
+  ))}
+  {/* {topproduct.map((i, index) => (
+    <StatCards key={index} product={i} />
+  ))} */}
+</div>
 
       {/* Section header */}
       <div className="flex justify-between items-center px-4 mb-4">
-        <h2 className="text-white font-bold text-lg">{activeCategory}</h2>
+        <h2 className="text-white font-bold text-lg">
+           {debounceSearch ? `Search: ${debounceSearch}` : activeCategory} </h2>
         <span className="text-white/40 text-sm">{filtered.length} products</span>
       </div>
+
 
       {/* Products grid — 2 col on mobile, 3 on md, 4 on xl */}
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 px-4 mb-8">
         {filtered.map(product => (
           <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+         {/* Stats strip */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 px-4 mb-6">
+        {STATS.map(s => (
+          <div key={s.label}
+            className="rounded-2xl p-4 text-center"
+            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
+            <p className="text-xl font-bold" style={{ color: s.color }}>{s.value}</p>
+            <p className="text-[11px] text-white/40 mt-1">{s.label}</p>
+          </div>
         ))}
       </div>
 

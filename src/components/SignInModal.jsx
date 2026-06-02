@@ -163,7 +163,7 @@
 
 import { useState } from "react"
 import { Modal, Input, Button, Form, message, Divider } from "antd"
-import { MailOutlined, GoogleOutlined, FacebookOutlined, GiftOutlined } from "@ant-design/icons"
+import { MailOutlined, GoogleOutlined, FacebookOutlined } from "@ant-design/icons"
 import { useAuth } from "../context/AuthContext"
 
 export default function SignInModal() {
